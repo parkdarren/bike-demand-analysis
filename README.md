@@ -22,13 +22,12 @@
 
 ## 사용 기술
 
-- Python
+* Python
 - Pandas
 - NumPy
 - Matplotlib
 - Seaborn
 - Scikit-learn
-- Jupyter Notebook
 
 ## 파일 구성
 
