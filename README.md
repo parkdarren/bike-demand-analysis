@@ -1,59 +1,47 @@
 # Bike Demand Analysis
 
-자전거 대여 수요 데이터를 활용해 시간, 계절, 날씨 변수에 따른 수요 패턴을 탐색하고 예측 모델링을 수행한 분석 프로젝트입니다.
+자전거 대여량을 예측하기 위해 시간, 계절, 날씨 변수를 다루고 여러 회귀 모델을 비교한 노트북 프로젝트입니다. 시간형 변수를 직접 분해하고, 수요 분포를 로그 변환해 보는 등 기본적인 EDA와 모델링 흐름을 연습한 작업입니다.
 
-## Project Overview
+## 현재 저장소 상태
 
-이 프로젝트는 자전거 공유 서비스의 대여량을 예측하기 위해 데이터 전처리, 탐색적 데이터 분석, 피처 엔지니어링, 모델 학습 과정을 정리한 포트폴리오용 저장소입니다.
+이 저장소의 노트북은 자전거 수요 데이터의 `datetime`, `season`, `holiday`, `weather`, `temp`, `humidity`, `count` 같은 컬럼을 기준으로 작성되어 있습니다.
 
-## Repository Structure
+다만 현재 `data/` 폴더에 들어 있는 CSV는 노트북이 기대하는 자전거 수요 데이터가 아니라 다른 스키마의 데이터입니다. 따라서 노트북을 그대로 실행하려면 `data/train_data.csv`, `data/test_data.csv`를 자전거 수요 데이터 형식으로 교체해야 합니다.
 
-```text
-bike-demand-analysis/
-├─ README.md
-├─ requirements.txt
-├─ notebooks/
-│  ├─ 01_eda.ipynb
-│  └─ 02_modeling.ipynb
-├─ data/
-│  ├─ train_data.csv
-│  └─ test_data.csv
-└─ outputs/
-   └─ figures/
-```
+포트폴리오에서는 이 프로젝트를 대표작으로 두기보다는, EDA와 회귀 모델링 연습 기록으로 보조 배치하는 것이 좋습니다.
 
-## Data
+## 분석 흐름
 
-- `train_data.csv`: 모델 학습 및 분석에 사용하는 자전거 대여 수요 데이터
-- `test_data.csv`: 예측 대상 데이터
+- 날짜와 시간을 `year`, `month`, `hour`, `weekday`로 분리
+- 대여량 `count`의 분포 확인 및 로그 변환
+- 계절, 시간대, 날씨에 따른 수요 패턴 탐색
+- 불필요하거나 누수가 될 수 있는 컬럼 제거
+- Linear Regression, Decision Tree, Random Forest 모델 비교
+- RMSE 기준으로 모델 결과 확인
+- K-Fold와 GridSearchCV를 이용한 간단한 검증 흐름 실습
 
-## Analysis Workflow
-
-1. 데이터 불러오기 및 기본 구조 확인
-2. 날짜/시간 변수 분해
-3. 계절, 월, 시간대, 요일별 대여량 패턴 분석
-4. 날씨 및 온도 변수와 대여량 관계 확인
-5. 모델링을 위한 피처 엔지니어링
-6. 예측 모델 학습 및 결과 비교
-
-## Tech Stack
+## 사용 기술
 
 - Python
 - Pandas
 - NumPy
 - Matplotlib
+- Seaborn
 - Scikit-learn
 - Jupyter Notebook
 
-## How to Run
+## 파일 구성
 
-```bash
-pip install -r requirements.txt
-jupyter notebook
+```text
+notebooks/
+  01_eda.ipynb        데이터 확인과 시각화
+  02_modeling.ipynb   전처리와 회귀 모델링
+data/
+  train_data.csv      실행 전 데이터 스키마 확인 필요
+  test_data.csv       실행 전 데이터 스키마 확인 필요
 ```
 
-노트북은 `notebooks/` 폴더에서 실행하며 데이터 경로는 `../data/`를 기준으로 설정되어 있습니다.
+## 보완할 점
 
-## Notes
+이 프로젝트는 코드 흐름 자체는 자전거 수요 예측에 맞춰져 있지만, 현재 저장소의 데이터 파일과 맞지 않습니다. 포트폴리오에 적극적으로 활용하려면 먼저 데이터 파일을 정리하고, 노트북을 처음부터 끝까지 다시 실행한 뒤 결과 그래프와 모델 비교표를 저장하는 것이 좋습니다.
 
-이 저장소는 수업 실습 내용을 바탕으로 개인 포트폴리오용으로 정리한 프로젝트입니다.
