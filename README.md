@@ -52,7 +52,7 @@ pip install -r requirements.txt
 jupyter notebook
 ```
 
-노트북은 `notebooks/` 폴더에서 실행하며, 데이터 경로는 `../data/`를 기준으로 설정되어 있습니다.
+노트북은 `notebooks/` 폴더에서 실행하며 데이터 경로는 `../data/`를 기준으로 설정되어 있습니다.
 
 ## Notes
 
